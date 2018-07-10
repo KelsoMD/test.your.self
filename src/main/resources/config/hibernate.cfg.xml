@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<!-- configuration of connection with DataBase -->
+
+<hibernate-configuration>
+
+	<!-- factory provides connection -->
+	<session-factory>
+
+		<!-- point database type -->
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+
+		<!-- point driver -->
+		<property name="hibernate.connection.driver_class">
+			com.mysql.cj.jdbc.Driver
+		</property>
+
+		<!-- database url node53016-testyourself.mycloud.by    localhost-->
+		<property name="hibernate.connection.url">
+			jdbc:mysql://localhost/testyourself?useTimezone=true&amp;serverTimezone=UTC&amp;useSSL=false
+		</property>
+
+		<!-- point username and password -->
+		<property name="hibernate.connection.username">
+			root
+		</property>
+		<!-- LGVlhe08066 -->
+		<property name="hibernate.connection.password">
+			root
+		</property>
+		<property name="show_sql">true</property>
+		<!-- <property name="hibernate.enable_lazy_load_no_trans">true</property>-->
+
+		<mapping resource="hbm/user.hbm.xml"/>
+		<mapping resource="hbm/test.hbm.xml"/>
+		<mapping resource="hbm/group.hbm.xml"/>
+		<mapping resource="hbm/task.hbm.xml"/>
+		<mapping resource="hbm/result.hbm.xml"/>
+		<mapping resource="hbm/themes.hbm.xml"/>
+		<mapping resource="hbm/question.hbm.xml"/>
+		
+	</session-factory>
+
+</hibernate-configuration>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="by.nesterenok.testyourself.domain.Result" table="result">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="increment" />
+		</id>
+
+		<property name="mark" type="int">
+			<column name="mark" />
+		</property>
+
+		<property name="passed" type="boolean">
+			<column name="passed" />
+		</property>
+		
+		<many-to-one name="user" class="by.nesterenok.testyourself.domain.User" column="user" lazy="proxy" fetch="join"/>
+		<many-to-one name="test" class="by.nesterenok.testyourself.domain.Test" column="test" lazy="proxy" fetch="join"/>
+
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="by.nesterenok.testyourself.domain.Invite" table="invite">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="increment" />
+		</id>
+		<many-to-one name="user" class="by.nesterenok.testyourself.domain.User" cascade="all" column="member"/>
+		<many-to-one name="group" class="by.nesterenok.testyourself.domain.User" cascade="all" column="group_id"/>
+
+	</class>
+
+</hibernate-mapping>

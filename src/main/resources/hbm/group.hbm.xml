@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="by.nesterenok.testyourself.domain.Group" table="groups">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="increment"/>
+        </id>
+
+        <property name="theme" type="java.lang.String">
+            <column name="theme"/>
+        </property>
+        <property name="title" type="java.lang.String">
+            <column name="title"/>
+        </property>
+
+        <many-to-one name="mentor" class="by.nesterenok.testyourself.domain.User" cascade="all" column="mentor"/>
+
+        <set name="tasks" table="group_task" lazy="true" fetch="join">
+            <key column="party"/>
+            <one-to-many class="by.nesterenok.testyourself.domain.Task"/>
+        </set>
+
+        <set name="members" table="group_members" cascade="all" lazy="true" fetch="join">
+            <key column="group_id"/>
+            <many-to-many column="member" class="by.nesterenok.testyourself.domain.User"/>
+        </set>
+
+
+    </class>
+
+</hibernate-mapping>

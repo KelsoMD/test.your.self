@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="by.nesterenok.testyourself.domain.Test" table="tests">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="increment" />
+		</id>
+
+		<property name="theme" type="java.lang.String">
+			<column name="theme" />
+		</property>
+
+		<property name="lvl" type="int">
+			<column name="level" />
+		</property>
+
+		<many-to-one name="author" class="by.nesterenok.testyourself.domain.User"
+			column="author" lazy="proxy" fetch="join" />
+
+		<property name="aprooved" type="boolean">
+			<column name="aprooved"></column>
+		</property>
+
+		<set name="questions" table="test_questions" cascade="all" lazy="true"
+			fetch="join">
+			<key column="test" />
+			<many-to-many column="question"
+				class="by.nesterenok.testyourself.domain.Question" />
+		</set>
+	</class>
+
+</hibernate-mapping>

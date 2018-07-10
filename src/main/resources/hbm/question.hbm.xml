@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="by.nesterenok.testyourself.domain.Question" table="questions">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="increment" />
+		</id>
+
+		<property name="theme" type="java.lang.String">
+			<column name="theme" />
+		</property>
+
+		<property name="lvl" type="int">
+			<column name="level" />
+		</property>
+
+		<property name="text" type="java.lang.String">
+			<column name="text" />
+		</property>
+
+		<property name="image" type="java.lang.String">
+			<column name="image" />
+		</property>
+
+		<property name="correctAnswer" type="java.lang.String">
+			<column name="answer_correct" />
+		</property>
+
+		<property name="answer1" type="java.lang.String">
+			<column name="answer_1" />
+		</property>
+
+		<property name="answer2" type="java.lang.String">
+			<column name="answer_2" />
+		</property>
+
+		<property name="answer3" type="java.lang.String">
+			<column name="answer_3" />
+		</property>
+
+		<property name="aprooved" type="boolean">
+			<column name="aprooved" />
+		</property>
+
+		<many-to-one name="author" class="by.nesterenok.testyourself.domain.User"
+			column="author" lazy="proxy" fetch="join" />
+
+
+	</class>
+
+</hibernate-mapping>
