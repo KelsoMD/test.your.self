@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface QuestionDao extends CrudRepository<Question, Integer> {
+
+    //TODO try to implement
+
 }

@@ -90,7 +90,7 @@ public class TestDaoHibernateImpl implements TestDao {
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         List<Test> testList = criteria.list();
         session.close();
-        if (testList.size()>4) {
+        if (testList.size() > 4) {
             return testList.subList(0, 4);
         } else {
             return testList;

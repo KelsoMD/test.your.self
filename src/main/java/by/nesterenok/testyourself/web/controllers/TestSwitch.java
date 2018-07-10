@@ -1,15 +1,22 @@
-package by.nesterenok.testyourself.web.action.implmvc;
+package by.nesterenok.testyourself.web.controllers;
 
-import static by.nesterenok.testyourself.web.util.WebConstantPool.REQUEST_MAPPING_USER_TESTS_CREATE_QUESTION;
-import static by.nesterenok.testyourself.web.util.WebConstantPool.REQUEST_MAPPING_USER_TESTS_CREATE_TEST_ONE;
-import static by.nesterenok.testyourself.web.util.WebConstantPool.REQUEST_MAPPING_USER_TESTS_CREATE_TEST_TWO;
-import static by.nesterenok.testyourself.web.util.WebConstantPool.REQUEST_MAPPING_USER_TESTS_CREATE_THEME;
+import static by.nesterenok.testyourself.web.util.WebConstantPool.BUILD_MAPPING;
+import static by.nesterenok.testyourself.web.util.WebConstantPool.CREATE_MAPPING;
+import static by.nesterenok.testyourself.web.util.WebConstantPool.CREATE_QUESTION_PAGE;
+import static by.nesterenok.testyourself.web.util.WebConstantPool.CREATE_TEST_ONE_PAGE;
+import static by.nesterenok.testyourself.web.util.WebConstantPool.CREATE_TEST_TWO_PAGE;
+import static by.nesterenok.testyourself.web.util.WebConstantPool.CREATE_THEME_PAGE;
+import static by.nesterenok.testyourself.web.util.WebConstantPool.GUEST_TESTS_MAPPING;
+import static by.nesterenok.testyourself.web.util.WebConstantPool.MENTOR_TESTS_MAPPING;
+import static by.nesterenok.testyourself.web.util.WebConstantPool.CREATE_QUESTION_MAPPING;
+import static by.nesterenok.testyourself.web.util.WebConstantPool.CREATE_THEME_MAPPING;
 import static by.nesterenok.testyourself.web.util.WebConstantPool.REQUEST_PARAM_LVL;
+import static by.nesterenok.testyourself.web.util.WebConstantPool.REQUEST_PARAM_QUESTION;
 import static by.nesterenok.testyourself.web.util.WebConstantPool.REQUEST_PARAM_QUESTIONS_TO_CHOOSE;
 import static by.nesterenok.testyourself.web.util.WebConstantPool.REQUEST_PARAM_THEME;
 import static by.nesterenok.testyourself.web.util.WebConstantPool.REQUEST_PARAM_THEMES;
 import static by.nesterenok.testyourself.web.util.WebConstantPool.SESSION_PARAM_TEST;
-import static by.nesterenok.testyourself.web.util.WebConstantPool.SESSION_PARAM_USER;
+import static by.nesterenok.testyourself.web.util.WebConstantPool.USER_TESTS_MAPPING;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,9 +35,10 @@ import by.nesterenok.testyourself.service.ThemeService;
 import by.nesterenok.testyourself.service.UserService;
 
 @Controller
-@RequestMapping({"user/tests", "mentor/tests", "guest/tests"})
+@RequestMapping({USER_TESTS_MAPPING, MENTOR_TESTS_MAPPING, GUEST_TESTS_MAPPING})
 @SessionAttributes(SESSION_PARAM_TEST)
 public class TestSwitch implements RoleProcessor {
+
 
     @Autowired
     private ThemeService themeService;
@@ -41,31 +49,31 @@ public class TestSwitch implements RoleProcessor {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = REQUEST_MAPPING_USER_TESTS_CREATE_THEME, method = RequestMethod.GET)
+    @RequestMapping(value = CREATE_THEME_MAPPING, method = RequestMethod.GET)
     public ModelAndView switchCreateTheme() {
-        ModelAndView modelAndView = new ModelAndView(processPage("create_theme"));
+        ModelAndView modelAndView = new ModelAndView(processPage(CREATE_THEME_PAGE));
         return modelAndView;
     }
 
-    @RequestMapping(value = REQUEST_MAPPING_USER_TESTS_CREATE_QUESTION, method = RequestMethod.GET)
+    @RequestMapping(value = CREATE_QUESTION_MAPPING, method = RequestMethod.GET)
     public ModelAndView initCreateQuestion() {
-        ModelAndView modelAndView = new ModelAndView(processPage("create_question"));
+        ModelAndView modelAndView = new ModelAndView(processPage(CREATE_QUESTION_PAGE));
         modelAndView.addObject(REQUEST_PARAM_THEMES, themeService.readThemes());
-        modelAndView.addObject("question", new Question());
+        modelAndView.addObject(REQUEST_PARAM_QUESTION, new Question());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @RequestMapping(value = CREATE_MAPPING, method = RequestMethod.GET)
     public ModelAndView switchCreateTestOne() {
-        ModelAndView modelAndView = new ModelAndView(processPage("create_test_one"));
+        ModelAndView modelAndView = new ModelAndView(processPage(CREATE_TEST_ONE_PAGE));
         modelAndView.addObject(REQUEST_PARAM_THEMES, themeService.readThemes());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/build", method = RequestMethod.GET)
-    public ModelAndView switchCreateTestTwo(@RequestParam("theme") String theme, @RequestParam("lvl") int lvl,
+    @RequestMapping(value = BUILD_MAPPING, method = RequestMethod.GET)
+    public ModelAndView switchCreateTestTwo(@RequestParam(REQUEST_PARAM_THEME) String theme, @RequestParam(REQUEST_PARAM_LVL) int lvl,
                                             HttpSession session) {
-        ModelAndView modelAndView = new ModelAndView(processPage("create_test_two"));
+        ModelAndView modelAndView = new ModelAndView(processPage(CREATE_TEST_TWO_PAGE));
         User user = userService.readByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
         Test test = new Test();
         test.setAuthor(user);

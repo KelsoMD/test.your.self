@@ -1,6 +1,6 @@
 package by.nesterenok.testyourself.web.util;
 
-public class ValidateNullParamException extends RuntimeException{
+public class ValidateNullParamException extends IllegalArgumentException{
 
 	private static final long serialVersionUID = 5663536041889774852L;
 

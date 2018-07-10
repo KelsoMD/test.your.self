@@ -68,7 +68,7 @@ public class TaskDaoHibernateImpl implements TaskDao {
 
     @Override
     public List<Task> readAll() {
-        // TODO Auto-generated method stub
+        // TODO read all tasks
         return null;
     }
 

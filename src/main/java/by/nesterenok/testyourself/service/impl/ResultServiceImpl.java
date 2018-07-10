@@ -5,18 +5,15 @@ import static by.nesterenok.testyourself.service.util.ServiceConstantPool.REGEX;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import by.nesterenok.testyourself.dao.TestDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import by.nesterenok.testyourself.dao.QuestionJPACriteriaDao;
 import by.nesterenok.testyourself.dao.ResultDao;
 import by.nesterenok.testyourself.dao.TaskResultDao;
+import by.nesterenok.testyourself.dao.TestDao;
 import by.nesterenok.testyourself.domain.Question;
 import by.nesterenok.testyourself.domain.Result;
 import by.nesterenok.testyourself.domain.Task;
 import by.nesterenok.testyourself.domain.TaskResult;
-import by.nesterenok.testyourself.domain.Test;
 import by.nesterenok.testyourself.domain.User;
 import by.nesterenok.testyourself.service.QuestionService;
 import by.nesterenok.testyourself.service.ResultService;
@@ -24,6 +21,8 @@ import by.nesterenok.testyourself.service.ResultService;
 @Service
 public class ResultServiceImpl implements ResultService {
 
+
+    //TODO use dao explicit, not service
     @Autowired
     private ResultDao resultDao;
 
@@ -34,26 +33,7 @@ public class ResultServiceImpl implements ResultService {
     private TestDao testDao;
 
     @Autowired
-    private QuestionJPACriteriaDao questionDao;
-
-    @Autowired
     private QuestionService questionService;
-
-    public void setResultDao(ResultDao resultDao) {
-        this.resultDao = resultDao;
-    }
-
-    public void setTaskResultDao(TaskResultDao taskResultDao) {
-        this.taskResultDao = taskResultDao;
-    }
-
-    public void setQuestionDao(QuestionJPACriteriaDao questionDao) {
-        this.questionDao = questionDao;
-    }
-
-    public void setQuestionService(QuestionService questionService) {
-        this.questionService = questionService;
-    }
 
     @Override
     public void createResult(Result result) {

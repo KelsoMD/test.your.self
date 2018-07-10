@@ -1,7 +1,8 @@
 package by.nesterenok.testyourself.dao.database.hbn;
 
 import java.util.List;
-
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -10,10 +11,6 @@ import org.springframework.stereotype.Repository;
 import by.nesterenok.testyourself.dao.GroupDao;
 import by.nesterenok.testyourself.domain.Group;
 import by.nesterenok.testyourself.domain.User;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 @Repository
 public class GroupDaoHibernateImpl implements GroupDao {
@@ -24,37 +21,37 @@ public class GroupDaoHibernateImpl implements GroupDao {
     @Override
     public void create(Group t) {
         Session session = SessionFactoryManager.getSessionFactory()
-                .openSession();
+            .openSession();
         session.beginTransaction();
         session.save(t);
         session.getTransaction()
-                .commit();
+            .commit();
         session.close();
     }
 
     @Override
     public Group read(int id) {
         Session session = SessionFactoryManager.getSessionFactory()
-                .openSession();
+            .openSession();
         Group group = (Group) session.get(Group.class, id);
         return group;
     }
 
     @Override
     public void update(Group t) {
-        // TODO Auto-generated method stub
+        // TODO update group
 
     }
 
     @Override
     public void delete(Group group) {
-        // TODO Auto-generated method stub
+        // TODO delete group
 
     }
 
     @Override
     public List<Group> readAll() {
-        // TODO Auto-generated method stub
+        // TODO read all
         return null;
     }
 
@@ -69,10 +66,10 @@ public class GroupDaoHibernateImpl implements GroupDao {
     @Override
     public List<Group> readMentorGroups(User user) {
         Session session = SessionFactoryManager.getSessionFactory()
-                .openSession();
+            .openSession();
         Criteria criteria = session.createCriteria(Group.class)
-                .createCriteria("mentor")
-                .add(Restrictions.eq("id", user.getId()));
+            .createCriteria("mentor")
+            .add(Restrictions.eq("id", user.getId()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         List<Group> groupList = criteria.list();
         session.close();

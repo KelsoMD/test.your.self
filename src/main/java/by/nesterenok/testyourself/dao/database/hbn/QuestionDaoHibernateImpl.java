@@ -23,10 +23,12 @@ public class QuestionDaoHibernateImpl implements QuestionJPACriteriaDao {
 
     @Override
     public void create(Question t) {
-        Session session = SessionFactoryManager.getSessionFactory().openSession();
+        Session session = SessionFactoryManager.getSessionFactory()
+            .openSession();
         session.beginTransaction();
         session.save(t);
-        session.getTransaction().commit();
+        session.getTransaction()
+            .commit();
     }
 
     @Override
@@ -36,24 +38,28 @@ public class QuestionDaoHibernateImpl implements QuestionJPACriteriaDao {
 
     @Override
     public void update(Question t) {
-       Session session = SessionFactoryManager.getSessionFactory().openSession();
-       session.beginTransaction();
-       session.update(t);
-       session.getTransaction().commit();
+        Session session = SessionFactoryManager.getSessionFactory()
+            .openSession();
+        session.beginTransaction();
+        session.update(t);
+        session.getTransaction()
+            .commit();
     }
 
     @Override
     public void delete(Question question) {
-        Session session = SessionFactoryManager.getSessionFactory().openSession();
+        Session session = SessionFactoryManager.getSessionFactory()
+            .openSession();
         session.beginTransaction();
         session.delete(question);
-        session.getTransaction().commit();
-
+        session.getTransaction()
+            .commit();
     }
 
     @Override
     public List<Question> readAll() {
-        CriteriaQuery<Question> criteriaQuery = entityManager.getCriteriaBuilder().createQuery(Question.class);
+        CriteriaQuery<Question> criteriaQuery = entityManager.getCriteriaBuilder()
+            .createQuery(Question.class);
         Root<Question> root = criteriaQuery.from(Question.class);
         root.fetch("author", JoinType.INNER);
         criteriaQuery.select(root);
@@ -63,9 +69,12 @@ public class QuestionDaoHibernateImpl implements QuestionJPACriteriaDao {
 
     @Override
     public long counter() {
-        CriteriaQuery<Long> criteriaQuery = entityManager.getCriteriaBuilder().createQuery(Long.class);
-        criteriaQuery.select(entityManager.getCriteriaBuilder().count(criteriaQuery.from(Question.class)));
-        return entityManager.createQuery(criteriaQuery).getSingleResult();
+        CriteriaQuery<Long> criteriaQuery = entityManager.getCriteriaBuilder()
+            .createQuery(Long.class);
+        criteriaQuery.select(entityManager.getCriteriaBuilder()
+            .count(criteriaQuery.from(Question.class)));
+        return entityManager.createQuery(criteriaQuery)
+            .getSingleResult();
     }
 
     @Override
@@ -79,14 +88,12 @@ public class QuestionDaoHibernateImpl implements QuestionJPACriteriaDao {
         CriteriaQuery<Question> criteriaQuery = criteriaBuilder.createQuery(Question.class);
         Root<Question> root = criteriaQuery.from(Question.class);
         root.fetch("author", JoinType.INNER);
-        Predicate predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("theme"), theme), criteriaBuilder
-                .equal(root.get("lvl"), lvl), criteriaBuilder.equal(root.get("aprooved"), true));
+        Predicate predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("theme"), theme),
+            criteriaBuilder.equal(root.get("lvl"), lvl), criteriaBuilder.equal(root.get("aprooved"), true));
 
         criteriaQuery.where(predicate);
-//        criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("theme"), ));
-//        criteriaQuery.where(criteriaBuilder.equal(root.get("lvl"), ));
-//        criteriaQuery.where(criteriaBuilder.equal(root.get("aprooved"), true));
-        return entityManager.createQuery(criteriaQuery).getResultList();
+        return entityManager.createQuery(criteriaQuery)
+            .getResultList();
     }
 
     @Override
@@ -95,8 +102,10 @@ public class QuestionDaoHibernateImpl implements QuestionJPACriteriaDao {
         CriteriaQuery<Question> criteriaQuery = criteriaBuilder.createQuery(Question.class);
         Root<Question> root = criteriaQuery.from(Question.class);
         root.fetch("author", JoinType.INNER);
-        criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("aprooved"), false));
-        return entityManager.createQuery(criteriaQuery).getResultList();
+        criteriaQuery.select(root)
+            .where(criteriaBuilder.equal(root.get("aprooved"), false));
+        return entityManager.createQuery(criteriaQuery)
+            .getResultList();
     }
 
     @Override
@@ -106,8 +115,11 @@ public class QuestionDaoHibernateImpl implements QuestionJPACriteriaDao {
         CriteriaQuery<Question> questionCriteriaQuery = criteriaBuilder.createQuery(Question.class);
         Root<Question> root = questionCriteriaQuery.from(Question.class);
         root.fetch("author", JoinType.INNER);
-        questionCriteriaQuery.select(root).where(criteriaBuilder.equal(root.get("aprooved"), false));
+        questionCriteriaQuery.select(root)
+            .where(criteriaBuilder.equal(root.get("aprooved"), false));
 
-        return entityManager.createQuery(questionCriteriaQuery).getResultList().size();
+        return entityManager.createQuery(questionCriteriaQuery)
+            .getResultList()
+            .size();
     }
 }

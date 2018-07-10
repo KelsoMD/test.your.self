@@ -7,35 +7,42 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmailService{
+public class EmailService {
+
+    //TODO Implement spring mail templates
+
+    public static final String FROM_EMAIL_ADDRESS = "testyourself.application@mail.ru";
 
     @Autowired
     public JavaMailSender emailSender;
 
-    public void sendSimpleMessage(String to, String subject, String text){
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(to);
-            message.setSubject(subject);
-            message.setFrom("testyourself.application@mail.ru");
-            message.setText(text);
-            emailSender.send(message);
+    public void sendSimpleMessage(String to, String subject, String text) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setFrom(FROM_EMAIL_ADDRESS);
+        message.setText(text);
+        emailSender.send(message);
     }
-    public void sendAcceptMessage(String to, Question question){
+
+    public void sendAcceptMessage(String to, Question question) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(String.format("Question %s accepted.", question.getId()));
         message.setFrom("testyourself.application@mail.ru");
-        message.setText(String.format("Your question %s (%s) accepted by moderators, from now it can be used in your tests!",
+        message.setText(
+            String.format("Your question %s (%s) accepted by moderators, from now it can be used in your tests!",
                 question.getId(), question.getText()));
         emailSender.send(message);
     }
-    public void sendDeniMessage(String to, Question question){
+
+    public void sendDeniMessage(String to, Question question) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(String.format("Question %s denied.", question.getId()));
         message.setFrom("testyourself.application@mail.ru");
-        message.setText(String.format("Your question %s (%s) denied by moderators. The reason is not implemented yet " +
-                        "=)",
+        message.setText(
+            String.format("Your question %s (%s) denied by moderators. The reason is not implemented yet " + "=)",
                 question.getId(), question.getText()));
         emailSender.send(message);
     }

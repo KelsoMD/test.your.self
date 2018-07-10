@@ -20,10 +20,9 @@ public interface StartService {
 
     long getNewQuestionsCount();
 
-    public int getNewTestsCount();
+    int getNewTestsCount();
 
-    public int getNewThemeCount();
+    int getNewThemeCount();
 
-    public List<Task> getComplete4Task(User user);
-
+    List<Task> getComplete4Task(User user);
 }

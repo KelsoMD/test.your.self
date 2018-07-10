@@ -19,13 +19,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     SuccessHandler successHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
-        http.addFilterBefore(filter,CsrfFilter.class);
-        http.csrf().disable();
+        http.addFilterBefore(filter, CsrfFilter.class);
+        http.csrf()
+            .disable();
         http.logout()
             .logoutSuccessUrl("/guest")
             .clearAuthentication(true)
@@ -52,15 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication().withUser("user").password("user").roles("USER").and()
-//        .withUser("mentor").password("mentor").roles("MENTOR").and()
-//        .withUser("quest").password("quest").roles("GUEST");
-//
-//    }
-
-        @Override
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
             .dataSource(this.dataSource())

@@ -12,10 +12,6 @@ public class ThemeServiceImpl implements ThemeService {
     @Autowired
     private ThemeDao themeDao;
 
-    public void setThemeDao(ThemeDao themeDao) {
-        this.themeDao = themeDao;
-    }
-
     @Override
     public List<String> readThemes() {
         return themeDao.readAll();

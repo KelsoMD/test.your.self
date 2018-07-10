@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface ThemeService {
 
-	public List<String> readThemes();
+	 List<String> readThemes();
 	
-	public void createTheme(String theme);
+	 void createTheme(String theme);
 
 }

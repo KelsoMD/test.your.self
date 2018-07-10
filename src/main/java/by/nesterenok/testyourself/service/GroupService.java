@@ -6,11 +6,11 @@ import by.nesterenok.testyourself.domain.User;
 
 public interface GroupService {
 
-    public List<Group> readGroups(User user);
+    List<Group> readGroups(User user);
 
-    public List<Group> readMentorGroups(User user);
+    List<Group> readMentorGroups(User user);
 
-    public void createGroup(Group group);
+    void createGroup(Group group);
 
-    public Group readGroup(int id);
+    Group readGroup(int id);
 }

@@ -12,55 +12,55 @@ import org.springframework.stereotype.Component;
 public class MyAspect {
 
     private static final Logger log = LogManager.getLogger(MyAspect.class);
+    //TODO use aspects for commenting or hz zachem
+    //
+    //    @Pointcut(value = "execution(* by.nesterenok.testyourself.service.*.*(..))")
+    //    public void getPointCut() {
+    //    }
 
-//
-//    @Pointcut(value = "execution(* by.nesterenok.testyourself.service.*.*(..))")
-//    public void getPointCut() {
-//    }
+    //    @Before(value = "execution(* by.nesterenok.testyourself.service.QuestionService.readQuestion(..))")
+    //    public void doSmth(JoinPoint point) {
+    //        log.info(point.getSignature().getDeclaringTypeName() + " " + point.getSignature().getName() + " called.");
+    //    }
 
-//    @Before(value = "execution(* by.nesterenok.testyourself.service.QuestionService.readQuestion(..))")
-//    public void doSmth(JoinPoint point) {
-//        log.info(point.getSignature().getDeclaringTypeName() + " " + point.getSignature().getName() + " called.");
-//    }
+    //    @After(value = "execution(* by.nesterenok.testyourself.service.QuestionService.readQuestion(..))")
+    //    public void doSmth2(JoinPoint point) {
+    //        log.info(point.getSignature().getDeclaringTypeName() + " " + point.getSignature().getName() + " finished.");
+    //    }
 
-//    @After(value = "execution(* by.nesterenok.testyourself.service.QuestionService.readQuestion(..))")
-//    public void doSmth2(JoinPoint point) {
-//        log.info(point.getSignature().getDeclaringTypeName() + " " + point.getSignature().getName() + " finished.");
-//    }
+    //    @Around(value = "execution(* by.nesterenok.testyourself.service.*.*(..))")
+    //    public Object aroundDoSmth(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    //        log.info(proceedingJoinPoint.getSignature().getDeclaringTypeName() + " "
+    //                + proceedingJoinPoint.getSignature().getName() + " started.");
+    //        log.info(proceedingJoinPoint.getSignature().getDeclaringTypeName() + " "
+    //                + proceedingJoinPoint.getSignature().getName() + " runs with "
+    //                + proceedingJoinPoint.getArgs());
+    //       Object ret =  proceedingJoinPoint.proceed();
+    //        log.info(proceedingJoinPoint.getSignature().getDeclaringTypeName() + " "
+    //                + proceedingJoinPoint.getSignature().getName() + " finished.");
+    //        return ret;
+    //    }
 
-//    @Around(value = "execution(* by.nesterenok.testyourself.service.*.*(..))")
-//    public Object aroundDoSmth(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-//        log.info(proceedingJoinPoint.getSignature().getDeclaringTypeName() + " "
-//                + proceedingJoinPoint.getSignature().getName() + " started.");
-//        log.info(proceedingJoinPoint.getSignature().getDeclaringTypeName() + " "
-//                + proceedingJoinPoint.getSignature().getName() + " runs with "
-//                + proceedingJoinPoint.getArgs());
-//       Object ret =  proceedingJoinPoint.proceed();
-//        log.info(proceedingJoinPoint.getSignature().getDeclaringTypeName() + " "
-//                + proceedingJoinPoint.getSignature().getName() + " finished.");
-//        return ret;
-//    }
+    //    @AfterThrowing(value = "execution(* by.nesterenok.testyourself.service.*.*(..))", throwing = "exception")
+    //    public void afterThrowDoSmth(JoinPoint point, Exception exception) {
+    //        log.info(point.getSignature().getDeclaringTypeName() + " "
+    //                + point.getSignature().getName()
+    //                + " throws exception ");
+    //        log.error(point.getSignature().getDeclaringTypeName() + " "
+    //                + point.getSignature().getName(), exception.getCause());
+    //    }
 
-//    @AfterThrowing(value = "execution(* by.nesterenok.testyourself.service.*.*(..))", throwing = "exception")
-//    public void afterThrowDoSmth(JoinPoint point, Exception exception) {
-//        log.info(point.getSignature().getDeclaringTypeName() + " "
-//                + point.getSignature().getName()
-//                + " throws exception ");
-//        log.error(point.getSignature().getDeclaringTypeName() + " "
-//                + point.getSignature().getName(), exception.getCause());
-//    }
+    //    @After(value = "execution(* by.nesterenok.testyourself.service.*.*(..))")
+    //    public void afterFinnaly(JoinPoint point){
+    //        log.info(point.getSignature().getDeclaringTypeName() + " "
+    //                + point.getSignature().getName()
+    //                + " should work all the time");
+    //    }
 
-//    @After(value = "execution(* by.nesterenok.testyourself.service.*.*(..))")
-//    public void afterFinnaly(JoinPoint point){
-//        log.info(point.getSignature().getDeclaringTypeName() + " "
-//                + point.getSignature().getName()
-//                + " should work all the time");
-//    }
-
-//    @AfterReturning(value = "execution(* by.nesterenok.testyourself.service.*.*(..))")
-//    public void afterReturning(JoinPoint point){
-//        log.info(point.getSignature().getDeclaringTypeName() + " "
-//                + point.getSignature().getName()
-//                + " shoud work only without throwing");
-//    }
+    //    @AfterReturning(value = "execution(* by.nesterenok.testyourself.service.*.*(..))")
+    //    public void afterReturning(JoinPoint point){
+    //        log.info(point.getSignature().getDeclaringTypeName() + " "
+    //                + point.getSignature().getName()
+    //                + " shoud work only without throwing");
+    //    }
 }

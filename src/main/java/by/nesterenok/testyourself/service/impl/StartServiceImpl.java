@@ -20,14 +20,11 @@ public class StartServiceImpl implements StartService {
     @Autowired
     private ThemeDao themeDao;
     @Autowired
-    private GroupDao groupDao;
-    @Autowired
     private TaskDao taskDao;
     @Autowired
     private UserDao userDao;
     @Autowired
     private ResultDao resultDao;
-
 
     @Override
     public long getQuestionCount() {
@@ -39,9 +36,8 @@ public class StartServiceImpl implements StartService {
         return userDao.counter();
     }
 
-
     @Override
-    public long getTestPassedCount(){
+    public long getTestPassedCount() {
         return resultDao.counter();
     }
 

@@ -22,11 +22,11 @@ public class ResultDaoHibernateImpl implements ResultDao {
     public void create(Result t) {
 
         Session session = SessionFactoryManager.getSessionFactory()
-                .openSession();
+            .openSession();
         session.beginTransaction();
         session.save(t);
         session.getTransaction()
-                .commit();
+            .commit();
         session.close();
     }
 
@@ -34,7 +34,7 @@ public class ResultDaoHibernateImpl implements ResultDao {
     public Result read(int id) {
 
         Session session = SessionFactoryManager.getSessionFactory()
-                .openSession();
+            .openSession();
         Result result = (Result) session.get(Result.class, id);
         session.close();
         return result;
@@ -54,7 +54,7 @@ public class ResultDaoHibernateImpl implements ResultDao {
     public List<Result> readAll() {
 
         Session session = SessionFactoryManager.getSessionFactory()
-                .openSession();
+            .openSession();
         Criteria criteria = session.createCriteria(Result.class);
         List<Result> resultList = criteria.list();
         session.close();

@@ -7,11 +7,11 @@ import by.nesterenok.testyourself.domain.User;
 
 public interface InviteDao {
 
-    public void create(Invite invite);
+    void create(Invite invite);
 
-    public List<Invite> readUsers(User user);
+    List<Invite> readUsers(User user);
 
-    public List<Invite> reaGroups(Group group);
+    List<Invite> reaGroups(Group group);
 
-    public void delete(int id);
+    void delete(int id);
 }

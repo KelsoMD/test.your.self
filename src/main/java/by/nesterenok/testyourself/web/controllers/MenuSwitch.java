@@ -1,6 +1,5 @@
-package by.nesterenok.testyourself.web.action.implmvc;
+package by.nesterenok.testyourself.web.controllers;
 
-import by.nesterenok.testyourself.domain.Group;
 import by.nesterenok.testyourself.domain.User;
 import by.nesterenok.testyourself.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Iterator;
-
 import static by.nesterenok.testyourself.web.util.WebConstantPool.*;
 
 @Controller
-@RequestMapping(value = {"/user", "/guest", "/mentor"})
+@RequestMapping(value = {USER_MAPPING, GUEST_MAPPING, MENTOR_MAPPING})
 public class MenuSwitch implements RoleProcessor {
-
 
     @Autowired
     private TestService testService;
@@ -34,37 +30,36 @@ public class MenuSwitch implements RoleProcessor {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/tests")
+    @RequestMapping(value = TESTS_MAPPING)
     public ModelAndView switchTestsMenu() {
-        ModelAndView modelAndView = new ModelAndView(processPage("tests"));
+        ModelAndView modelAndView = new ModelAndView(processPage(TESTS_PAGE));
         //TODO Pagination
         modelAndView.addObject(REQUEST_PARAM_TESTS, testService.readAll());
         modelAndView.addObject(REQUEST_PARAM_THEMES, themeService.readThemes());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/info")
+    @RequestMapping(value = INFO_MAPPING)
     public ModelAndView switchInfoMenu() {
-        ModelAndView modelAndView = new ModelAndView(processPage("info"));
+        ModelAndView modelAndView = new ModelAndView(processPage(INFO_PAGE));
         modelAndView.addObject(REQUEST_PARAM_QUESTION_COUNT, startService.getQuestionCount());
-        modelAndView.addObject("test_count", startService.getTestPassedCount());
-        modelAndView.addObject("user_count", startService.getUserCount());
-
-        //TODO Counters
+        modelAndView.addObject(REQUEST_PARAM_TEST_COUNT, startService.getTestPassedCount());
+        modelAndView.addObject(REQUEST_PARAM_USER_COUNT, startService.getUserCount());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/groups", method = RequestMethod.GET)
+    @RequestMapping(value = GROUPS_MAPPING, method = RequestMethod.GET)
     public ModelAndView switchGroupsMenu() {
-        ModelAndView modelAndView = new ModelAndView(processPage("groups"));
-        User user = userService.readByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
-        if ("ROLE_MENTOR".equals(user.getRole())) {
+        ModelAndView modelAndView = new ModelAndView(processPage(GROUPS_PAGE));
+        User user = userService.readByLogin(SecurityContextHolder.getContext()
+            .getAuthentication()
+            .getName());
+        if (ROLE_MENTOR.equals(user.getRole())) {
             modelAndView.addObject(REQUEST_PARAM_GROUPS, groupService.readMentorGroups(user));
-        } else if ("ROLE_USER".equals(user.getRole())) {
+        } else if (ROLE_USER.equals(user.getRole())) {
             modelAndView.addObject(REQUEST_PARAM_GROUPS, groupService.readGroups(user));
             //TODO load invites
         }
         return modelAndView;
     }
-
 }

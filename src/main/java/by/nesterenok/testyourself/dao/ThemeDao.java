@@ -8,5 +8,5 @@ public interface ThemeDao {
 
     List<String> readAll();
 
-    public int newThemeCount();
+    int newThemeCount();
 }
