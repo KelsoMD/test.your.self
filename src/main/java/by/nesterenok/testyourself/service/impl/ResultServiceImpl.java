@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import by.nesterenok.testyourself.dao.ResultDao;
 import by.nesterenok.testyourself.dao.TaskResultDao;
 import by.nesterenok.testyourself.dao.TestDao;
@@ -19,6 +20,7 @@ import by.nesterenok.testyourself.service.QuestionService;
 import by.nesterenok.testyourself.service.ResultService;
 
 @Service
+@Transactional
 public class ResultServiceImpl implements ResultService {
 
 

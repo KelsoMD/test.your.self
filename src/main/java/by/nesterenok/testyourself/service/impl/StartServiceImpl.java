@@ -5,12 +5,14 @@ import java.util.List;
 import by.nesterenok.testyourself.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import by.nesterenok.testyourself.domain.Task;
 import by.nesterenok.testyourself.domain.Test;
 import by.nesterenok.testyourself.domain.User;
 import by.nesterenok.testyourself.service.StartService;
 
 @Service
+@Transactional
 public class StartServiceImpl implements StartService {
 
     @Autowired

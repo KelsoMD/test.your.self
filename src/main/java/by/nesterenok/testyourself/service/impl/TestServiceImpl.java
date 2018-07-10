@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import by.nesterenok.testyourself.dao.TestDao;
 import by.nesterenok.testyourself.domain.Question;
 import by.nesterenok.testyourself.domain.Test;
@@ -11,6 +12,7 @@ import by.nesterenok.testyourself.service.QuestionService;
 import by.nesterenok.testyourself.service.TestService;
 
 @Service
+@Transactional
 public class TestServiceImpl implements TestService {
 
     @Autowired
