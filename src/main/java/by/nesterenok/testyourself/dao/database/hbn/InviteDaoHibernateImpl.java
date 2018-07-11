@@ -13,6 +13,8 @@ import by.nesterenok.testyourself.domain.User;
 public class InviteDaoHibernateImpl implements InviteDao {
 
     public void create(Invite invite) {
+
+        //TODO try to persist with JPA
         Session session = SessionFactoryManager.getSessionFactory()
             .openSession();
         session.beginTransaction();
@@ -22,7 +24,7 @@ public class InviteDaoHibernateImpl implements InviteDao {
         session.close();
     }
 
-    public List<Invite> readUsers(User user) {
+    public List<Invite> readUserInvites(User user) {
         Session session = SessionFactoryManager.getSessionFactory()
             .openSession();
         List<Invite> inviteList = session.createCriteria(Invite.class)
@@ -32,7 +34,7 @@ public class InviteDaoHibernateImpl implements InviteDao {
         return inviteList;
     }
 
-    public List<Invite> reaGroups(Group group) {
+    public List<Invite> readGroupInvites(Group group) {
         Session session = SessionFactoryManager.getSessionFactory()
             .openSession();
         List<Invite> inviteList = session.createCriteria(Invite.class)

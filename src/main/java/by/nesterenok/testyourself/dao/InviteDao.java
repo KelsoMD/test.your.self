@@ -9,9 +9,9 @@ public interface InviteDao {
 
     void create(Invite invite);
 
-    List<Invite> readUsers(User user);
+    List<Invite> readUserInvites(User user);
 
-    List<Invite> reaGroups(Group group);
+    List<Invite> readGroupInvites(Group group);
 
     void delete(int id);
 }

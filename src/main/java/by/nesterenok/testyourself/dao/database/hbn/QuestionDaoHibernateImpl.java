@@ -1,17 +1,20 @@
 package by.nesterenok.testyourself.dao.database.hbn;
 
-import by.nesterenok.testyourself.dao.QuestionJPACriteriaDao;
-import by.nesterenok.testyourself.domain.Question;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
-import java.util.List;
+import by.nesterenok.testyourself.dao.QuestionJPACriteriaDao;
+import by.nesterenok.testyourself.domain.Question;
 
 @Repository
 @Transactional
@@ -23,12 +26,18 @@ public class QuestionDaoHibernateImpl implements QuestionJPACriteriaDao {
 
     @Override
     public void create(Question t) {
-        Session session = SessionFactoryManager.getSessionFactory()
-            .openSession();
-        session.beginTransaction();
-        session.save(t);
-        session.getTransaction()
+        //TODO to test
+        entityManager.getTransaction()
+            .begin();
+        entityManager.persist(t);
+        entityManager.getTransaction()
             .commit();
+        //        Session session = SessionFactoryManager.getSessionFactory()
+        //            .openSession();
+        //        session.beginTransaction();
+        //        session.save(t);
+        //        session.getTransaction()
+        //            .commit();
     }
 
     @Override
